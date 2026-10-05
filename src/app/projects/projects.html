@@ -1,0 +1,27 @@
+<h2>Projects</h2>
+<app-create-project (projectCreated)="addProject($event)"></app-create-project>
+@for (project of projects;track project.id)
+{
+<div class="project-card" [class.selected]="selectedProject?.id === project.id" (click)="selectProject(project.id)">
+    <h3>{{ project.name}}</h3>
+    <p>{{ project.description }}</p>
+    <p>Status: {{ project.status}}</p>
+
+    <button (click)="editProject(project); $event.stopPropagation()">Edit</button>
+    <button (click)="deleteProject(project.id); $event.stopPropagation()">Delete</button>
+</div>
+}
+@if (selectedProject)
+{
+<h3>Selected Project</h3>
+<p>Name: {{ selectedProject.name }}</p>
+<p>Description: {{selectedProject.description}}</p>
+<p>Status: {{ selectedProject.status}}</p>
+
+<input 
+type = "text"
+[(ngModel)] ="selectedProject.name"
+>
+<button (click) = "saveProject()">Save</button>
+<button (click) = "cancelEdit()">Cancel</button>
+}

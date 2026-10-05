@@ -1,0 +1,20 @@
+<section class="dashboard">
+    <h2>Dashboard</h2>
+    <p>Welcome to your developer workspace.</p>
+    <p>{{ statusMessage }}</p>
+    <button (click)="enableCreateProject()">Enalbe Create Project</button>
+    <button [disabled] ="isButtonDisabled">Create Project</button>
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Projects</h3>
+            <p>{{ projectCount }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Tasks</h3>
+            <p>{{ taskCount }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Completed</h3>
+            <p>{{ completedCount }}</p>
+        </div>
+    </div>

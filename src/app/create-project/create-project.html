@@ -1,0 +1,31 @@
+<h2>Create Project</h2>
+<label for="projectName">Project Name</label>
+<input 
+id="ProjectName"
+type="text"
+placeholder="Enter project name"
+[(ngModel)]="projectName"
+(input)="errorMessage = ''">
+@if(errorMessage)
+{
+    <p>{{errorMessage}}</p>
+}
+
+<label for="projectDescription">Project Description</label>
+<textarea 
+id="ProjectDescription"
+placeholder="Enter project description"
+[(ngModel)]="projectDescription"></textarea> 
+
+<label for="projectStatus">Status</label>
+<select
+id="projectStatus"
+[(ngModel])="projectStatus">
+<option value="Planning">Planning</option>
+<option value="In Progress">In Progress</option>
+<option value="Completed">Completed</option>
+</select>
+<p>Project Name: {{ projectName }}</p>
+<p>Project Description: {{ projectDescription }}</p>
+
+<button (click)="createProject()">Create Project</button>

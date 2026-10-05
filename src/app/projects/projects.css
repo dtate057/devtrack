@@ -1,0 +1,10 @@
+.project-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.project-card.selected{
+    border: 2px solid #333;
+    background-color: #f5f5f5;
+}
