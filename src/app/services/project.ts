@@ -1,5 +1,5 @@
 import { Service } from '@angular/core';
-import { Project } from '../models/project';
+import { Project,ProjectStatus } from '../models/project';
 @Service()
 export class ProjectService {
     private projects: Project[] = [
@@ -17,22 +17,31 @@ export class ProjectService {
         }
 
     ];
-    getProjects(): Project[] {
+
+    getProjects(): readonly Project[] {
         return [...this.projects];
     }
     addProject(project: Project) {
-        this.projects.push(project)
+        this.projects= [...this.projects,project];
     }
     deleteProject(id: number) {
         this.projects = this.projects.filter(project => project.id !== id);
     }
     updateProject(updatedProject: Project) {
-        const index = this.projects.findIndex(project => project.id === updatedProject.id);
-        if (index !== -1) {
-            this.projects[index] = updatedProject;
-        }
+        this.projects = this.projects.map(project => project.id === updatedProject.id ? updatedProject : project);
     }
     getProjectById(id: number): Project | undefined {
         return this.projects.find(project => project.id === id);
+    }
+    getProjectsByStatus(status: ProjectStatus) : Project[]{
+        return this.projects.filter(
+            project => project.status === status
+        );
+    }
+    getProjectCount(): number{
+        return this.projects.length;
+    }
+    getProjectCountByStatus(status : ProjectStatus) : number{
+        return this.getProjectsByStatus(status).length;
     }
 }

@@ -21,11 +21,10 @@ placeholder="Enter project description"
 <select
 id="projectStatus"
 [(ngModel])="projectStatus">
-<option value="Planning">Planning</option>
-<option value="In Progress">In Progress</option>
-<option value="Completed">Completed</option>
+@for(status of projectStatuses;track status)
+{
+    <option [value]="status">{{status }}</option>
+}
 </select>
-<p>Project Name: {{ projectName }}</p>
-<p>Project Description: {{ projectDescription }}</p>
 
 <button (click)="createProject()">Create Project</button>

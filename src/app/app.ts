@@ -9,8 +9,4 @@ import { RouterOutlet, RouterLink,RouterLinkActive } from '@angular/router';
 })
 export class App {
   appName = 'DevTrack';
-  projectCount = 3;
-  addProject() {
-    this.projectCount++;
-  }
 }

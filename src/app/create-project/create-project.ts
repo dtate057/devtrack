@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Project } from '../models/project';
+import { Project, ProjectStatus, PROJECT_STATUSES } from '../models/project';
 @Component({
   imports: [FormsModule],
   selector: 'app-create-project',
@@ -10,11 +10,11 @@ import { Project } from '../models/project';
 export class CreateProject {
   projectName = '';
   projectDescription = '';
-  projectStatus = 'Planning';
+  projectStatus: ProjectStatus = 'Planning';
+  projectStatuses = PROJECT_STATUSES;
   errorMessage = '';
 
   projectCreated = output<Project>();
-
   createProject() {
     if (this.projectName.trim() === '') {
       this.errorMessage = 'Project name is required';
@@ -26,7 +26,7 @@ export class CreateProject {
       name: this.projectName,
       description: this.projectDescription,
       status: this.projectStatus
-    };
+    }; 
     this.projectCreated.emit(newProject);
     this.projectName = '';
     this.projectDescription = '';
